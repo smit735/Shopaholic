@@ -1,0 +1,35 @@
+<div align="center">
+    <form [formGroup]="myForm">
+        <mat-card style="width: 25%; margin: 10px;">
+            <mat-card-header style="text-align: center;">
+                <mat-card-title>Login Form</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Your email">
+
+                </mat-form-field>
+                <div *ngIf="myForm.get('email').hasError('required')" class="red">
+                    Please provide a Email!
+                </div>
+                <div *ngIf="myForm.get('email').hasError('pattern')" class="red">
+                    Wrong Email Input
+                </div>
+
+                <br>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" placeholder="Your password">
+
+                </mat-form-field>
+
+                <div *ngIf="myForm.get('password').hasError('required') " class="red">
+                    Please provide a password!
+                </div>
+                <div *ngIf="myForm.get('password').hasError('minlength') " class="red">
+                    Minimum length is 6 </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>
