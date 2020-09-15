@@ -23,10 +23,12 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { StoresReducer } from "./reducer";
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
 import { AgmCoreModule } from '@agm/core';
+import { EditComponent } from './edit/edit.component';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { AgmCoreModule } from '@agm/core';
     StoresComponent,
     HeaderComponent,
     FooterComponent,
-    AddstoreComponent
+    AddstoreComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { AgmCoreModule } from '@agm/core';
     MatButtonModule,
     MatInputModule,
     MatIconModule,
+    MatGridListModule,
     MatMenuModule,
     MatToolbarModule,
     BrowserAnimationsModule,
