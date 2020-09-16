@@ -1,9 +1,8 @@
-export interface Stores {
-    id: number;
-    name: string,
-    address: string,
-    category: String,
+export class Stores {
 
+    constructor(name: string,
+        address: string,
+        category: String,) { }
 
 
 }

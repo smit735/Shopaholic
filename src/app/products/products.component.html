@@ -8,15 +8,15 @@
                     <mat-card class="example-card">
                         <mat-card-header>
 
-                            <mat-card-title>{{store.name}}</mat-card-title>
+                            <mat-card-title>{{store}}</mat-card-title>
                         </mat-card-header>
 
                         <mat-card-content>
                             <p>
-                                <label for="address">Address</label>:{{store.address}}
+                                <label for="address">Address</label>:{{store}}
 
                             </p>
-                            <p><label for="category">category</label>:{{store.category}}</p>
+                            <p><label for="category">category</label>:{{store}}</p>
                         </mat-card-content>
                         <mat-card-actions>
                             <button mat-button (click)="editStore(id)">Edit </button>

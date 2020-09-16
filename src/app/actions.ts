@@ -58,3 +58,4 @@ export class ProductRemove implements ActionEx {
     constructor(public id: number, public payload: any) {
     }
 }
+export type storeaction = StoresAdd | StoresRemove | StoresEdit;

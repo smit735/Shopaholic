@@ -29,6 +29,9 @@ export class StoresComponent implements OnInit {
     this.router.navigate(['admin/stores', id]);
   }
   ngOnInit(): void {
+    this.stores = this.store.select('stores');
+    console.log(this.store);
+
   }
 
 }
