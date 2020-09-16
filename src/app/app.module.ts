@@ -29,6 +29,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AgmCoreModule } from '@agm/core';
 import { EditComponent } from './edit/edit.component';
+import { ProductsComponent } from './products/products.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { EditproductComponent } from './editproduct/editproduct.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { EditComponent } from './edit/edit.component';
     HeaderComponent,
     FooterComponent,
     AddstoreComponent,
-    EditComponent
+    EditComponent,
+    ProductsComponent,
+    AddproductComponent,
+    EditproductComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,9 @@
 export interface Stores {
-    id: any;
+    id: number;
     name: string,
     address: string,
     category: String,
+
+
 
 }

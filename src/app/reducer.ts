@@ -1,6 +1,8 @@
 
 import { state } from '@angular/animations';
-import { ActionEx, StoresActionTypes } from './actions';
+import { Stores } from "./stores";
+import { ActionEx, StoresActionTypes, ProductActionTypes } from './actions';
+
 export const initialState = [];
 
 export function StoresReducer(state = initialState, action: ActionEx) {
@@ -12,9 +14,21 @@ export function StoresReducer(state = initialState, action: ActionEx) {
             return [
                 ...state.slice(0, action.payload),
                 ...state.slice(action.payload + 1)
-
             ];
         case StoresActionTypes.edit:
+
+            return [...state.slice(0, action.payload.id), action.payload, ...state.slice(action.payload.id + 1,)]
+        case ProductActionTypes.Add:
+            console.log(state);
+
+            return [...state, state[action.payload.id].push(action.payload)]
+        case ProductActionTypes.Remove:
+            return [
+                ...state.slice(0, action.payload),
+                ...state.slice(action.payload + 1)
+
+            ];
+        case ProductActionTypes.edit:
 
             return [...state.slice(0, action.payload.id), action.payload, ...state.slice(action.payload.id + 1,)]
 
@@ -23,9 +37,5 @@ export function StoresReducer(state = initialState, action: ActionEx) {
             return state;
     }
 
-
-}
-export function getstate() {
-    console.log(this.state);
 
 }

@@ -1,0 +1,61 @@
+<div align="center">
+    <form [formGroup]="addproduct">
+        <mat-card style="width: 45%; margin: 10px;">
+            <mat-card-header align="center">
+                <mat-card-title>Add Product</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field style="width:90%;">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Product Name">
+
+                </mat-form-field>
+                <div *ngIf="addproduct.get('name').hasError('required') && addproduct.dirty " class="red">
+                    Please provide a name!
+                </div>
+
+                <br>
+                <mat-form-field style="width:90%;">
+                    <mat-label>image</mat-label>
+                    <input matInput formControlName="image" placeholder="Product img link">
+
+                </mat-form-field>
+
+                <div *ngIf="addproduct.get('image').hasError('required') && addproduct.dirty" class="red">
+                    Please provide a image!
+                </div><br>
+
+                <mat-form-field appearance="fill" style="width:90%;">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option *ngFor="let cate of category" [value]="cate.value">
+                            {{cate.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field><br>
+                <mat-form-field style="width:90%;">
+                    <mat-label>Price</mat-label>
+                    <input matInput formControlName="price" placeholder="Product Price">
+
+                </mat-form-field>
+
+                <div *ngIf="addproduct.get('price').hasError('required') && addproduct.dirty" class="red">
+                    Please provide a Price!
+                </div><br>
+
+                <!-- <mat-form-field class="example-full-width" style="width:90%;">
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="address" placeholder="Product address" #search>
+
+
+                </mat-form-field><br> -->
+                <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" style="width:90%;">
+                    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                        (dragEnd)="markerDragEnd($event)"></agm-marker>
+                </agm-map> -->
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>
