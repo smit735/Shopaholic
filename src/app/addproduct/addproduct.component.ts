@@ -34,7 +34,7 @@ export class AddproductComponent implements OnInit {
 
   }
   addproduct = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
     image: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
