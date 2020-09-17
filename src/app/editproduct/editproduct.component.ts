@@ -10,6 +10,7 @@ import { ProductEdit } from "../productaction";
 
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
+import { Istore } from '../reducer';
 interface category {
   value: string;
   viewValue: string;
@@ -28,9 +29,9 @@ export class EditproductComponent implements OnInit {
     { value: 'Groceries', viewValue: 'Groceries' },
     { value: 'Fashion', viewValue: 'Fashion' }
   ];
-  stores: Observable<Stores[]>;
+  stores: Observable<Istore>;
   constructor(private router: Router, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private store: Store<{ stores: Stores[] }>, private route: ActivatedRoute) {
+    private ngZone: NgZone, private store: Store<{ stores: Istore }>, private route: ActivatedRoute) {
     this.stores = store.pipe(select('stores'));
 
   }
@@ -48,7 +49,7 @@ export class EditproductComponent implements OnInit {
       this.store.dispatch(new ProductEdit(this.urlid, this.editproduct.value,));
       console.log(this.store);
 
-      this.router.navigate(['/admin/stores']);
+      this.router.navigate(['/admin/stores/' + this.urlid + '/products']);
     }
     else {
       alert("Form is invalid")
@@ -59,15 +60,16 @@ export class EditproductComponent implements OnInit {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.urlid = id;
     this.store.subscribe((store: any) => {
-      this.storeobject = store.stores[this.urlid];
-      console.log(this.storeobject);
+      console.log(store.stores.products);
+      this.storeobject = store.stores.products[this.urlid];
+
 
     })
     this.editproduct.setValue({
       name: this.storeobject.name,
       image: this.storeobject.image,
       category: this.storeobject.category,
-      prize: this.storeobject.prize
+      price: this.storeobject.price
     });
 
   }

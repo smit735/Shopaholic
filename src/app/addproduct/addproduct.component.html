@@ -13,6 +13,12 @@
                 <div *ngIf="addproduct.get('name').hasError('required') && addproduct.dirty " class="red">
                     Please provide a name!
                 </div>
+                <div *ngIf="addproduct.get('name').hasError('minlength') && addproduct.dirty " class="red">
+                    Minimum 6 letters required!
+                </div>
+                <div *ngIf="addproduct.get('name').hasError('maxlength') && addproduct.dirty " class="red">
+                    Maximum 20 letters allowed!
+                </div>
 
                 <br>
                 <mat-form-field style="width:90%;">
@@ -43,16 +49,7 @@
                     Please provide a Price!
                 </div><br>
 
-                <!-- <mat-form-field class="example-full-width" style="width:90%;">
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="address" placeholder="Product address" #search>
 
-
-                </mat-form-field><br> -->
-                <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" style="width:90%;">
-                    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                        (dragEnd)="markerDragEnd($event)"></agm-marker>
-                </agm-map> -->
                 <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
 
             </mat-card-content>

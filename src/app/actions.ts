@@ -4,12 +4,11 @@ export enum StoresActionTypes {
     Add = '[Stores Component] Add',
     Remove = '[Stores Component] Remove',
     edit = '[Stores Component] edit',
+    ProductAdd = '[Product Component] Add',
+    ProductRemove = '[Product Component] Remove',
+    ProductEdit = '[Product Component] edit'
 }
-export enum ProductActionTypes {
-    Add = '[Product Component] Add',
-    Remove = '[Product Component] Remove',
-    edit = '[Product Component] edit'
-}
+
 export class ActionEx implements Action {
     readonly type;
     payload: any;
@@ -36,14 +35,13 @@ export class StoresRemove implements ActionEx {
     }
 }
 export class ProductAdd implements ActionEx {
-    readonly type = ProductActionTypes.Add;
-    constructor(public id: number, public payload: any) {
-        payload = Object.assign(payload, { id: id });
+    readonly type = StoresActionTypes.ProductAdd;
+    constructor(public payload: any) {
 
     }
 }
 export class ProductEdit implements ActionEx {
-    readonly type = ProductActionTypes.edit;
+    readonly type = StoresActionTypes.ProductEdit;
 
 
     constructor(public id: number, public payload: any) {
@@ -51,11 +49,16 @@ export class ProductEdit implements ActionEx {
         payload = Object.assign(payload, { id: id });
         console.log(payload);
 
+
     }
 }
 export class ProductRemove implements ActionEx {
-    readonly type = ProductActionTypes.Remove;
-    constructor(public id: number, public payload: any) {
+
+
+    readonly type = StoresActionTypes.ProductRemove;
+    constructor(public payload: any) {
+        console.log(payload);
+
     }
 }
-export type storeaction = StoresAdd | StoresRemove | StoresEdit;
+export type storeaction = StoresAdd | StoresRemove | StoresEdit | ProductAdd | ProductRemove | ProductEdit;

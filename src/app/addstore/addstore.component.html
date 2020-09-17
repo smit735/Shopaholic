@@ -13,6 +13,12 @@
                 <div *ngIf="addstore.get('name').hasError('required') && addstore.dirty " class="red">
                     Please provide a name!
                 </div>
+                <div *ngIf="addstore.get('name').hasError('minlength') && addstore.dirty " class="red">
+                    Minimum 6 letters required!
+                </div>
+                <div *ngIf="addstore.get('name').hasError('maxlength') && addstore.dirty " class="red">
+                    Maximum 20 letters allowed!
+                </div>
 
                 <br>
                 <mat-form-field style="width:90%;">

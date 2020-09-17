@@ -1,6 +1,9 @@
 export class Stores {
-
-    constructor(name: string,
+    id: number;
+    name: string;
+    address: string;
+    category: string;
+    constructor(id: number, name: string,
         address: string,
         category: String,) { }
 

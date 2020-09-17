@@ -41,7 +41,7 @@ export class AddstoreComponent implements OnInit {
 
   }
   addstore = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
     address: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required)
   });
@@ -53,6 +53,9 @@ export class AddstoreComponent implements OnInit {
 
   onSubmit() {
     if (this.addstore.valid) {
+      Object.assign(this.addstore.value, { id: Math.floor(Math.random() * 100) });
+      console.log(this.addstore.value);
+
       this.store.dispatch(new StoresAdd(this.addstore.value));
       console.log(this.store);
 
