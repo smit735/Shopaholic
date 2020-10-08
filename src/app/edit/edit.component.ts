@@ -11,6 +11,8 @@ import { StoresAdd, StoresEdit } from "../actions";
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
 import { Istore } from '../reducer';
+import { StoresserviceService } from "../storesservice.service";
+
 interface category {
   value: string;
   viewValue: string;
@@ -23,6 +25,8 @@ interface category {
 export class EditComponent implements OnInit {
   public urlid;
   storeobject;
+  objectid;
+  realid
   category: category[] = [
     { value: 'Electronic', viewValue: 'Electronic' },
     { value: 'Groceries', viewValue: 'Groceries' },
@@ -30,21 +34,37 @@ export class EditComponent implements OnInit {
   ];
   stores: Observable<Istore>;
   constructor(private router: Router, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private store: Store<{ stores: Istore }>, private route: ActivatedRoute) {
+    private ngZone: NgZone, private store: Store<{ stores: Istore }>, private route: ActivatedRoute, private StoresServiceService: StoresserviceService) {
     this.stores = store.pipe(select('stores'));
 
   }
   editstore = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-    address: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required)
+    addr: new FormControl('', Validators.required),
+    cat: new FormControl('', Validators.required)
   });
 
 
   onSubmit() {
     if (this.editstore.valid) {
+      this.store.subscribe((store: any) => {
+        console.log(store.stores.data[this.urlid]);
+        this.storeobject = store.stores.data[this.urlid];
+        this.objectid = store.stores.data[this.urlid]._id;
+        console.log(this.objectid);
+
+
+      })
+      this.realid = this.objectid;
+      this.StoresServiceService.editstores(this.editstore.value, this.realid).subscribe(res => {
+        console.log(res);
+
+
+
+      });
       this.store.dispatch(new StoresEdit(this.urlid, this.editstore.value,));
-      console.log(this.store);
+      console.log(this.realid);
+
 
       this.router.navigate(['/admin/stores']);
     }
@@ -60,13 +80,17 @@ export class EditComponent implements OnInit {
     this.store.subscribe((store: any) => {
       console.log(store.stores.data[this.urlid]);
       this.storeobject = store.stores.data[this.urlid];
+      this.objectid = store.stores.data[this.urlid]._id;
+      console.log(this.objectid);
 
 
     })
+    this.realid = this.objectid;
+
     this.editstore.setValue({
       name: this.storeobject.name,
-      address: this.storeobject.address,
-      category: this.storeobject.category
+      addr: this.storeobject.addr,
+      cat: this.storeobject.cat
     });
 
   }

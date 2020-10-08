@@ -7,7 +7,7 @@ import { MapsAPILoader } from '@agm/core';
 import { Stores } from "../stores";
 import { select, Store } from '@ngrx/store';
 import { StoresAdd } from "../actions";
-
+import { StoresserviceService } from "../storesservice.service";
 import { Observable } from 'rxjs';
 
 interface category {
@@ -36,14 +36,14 @@ export class AddstoreComponent implements OnInit {
   ];
   stores: Observable<Stores[]>;
   constructor(private router: Router, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private store: Store<{ stores: Stores[] }>) {
+    private ngZone: NgZone, private store: Store<{ stores: Stores[] }>, private StoresServiceService: StoresserviceService) {
     this.stores = store.pipe(select('stores'));
 
   }
   addstore = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
-    address: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required)
+    addr: new FormControl('', Validators.required),
+    cat: new FormControl('', Validators.required)
   });
   ngOnInit() {
 
@@ -59,6 +59,11 @@ export class AddstoreComponent implements OnInit {
       this.store.dispatch(new StoresAdd(this.addstore.value));
       console.log(this.store);
 
+      this.StoresServiceService.addstores(this.addstore.value).subscribe(res => {
+        console.log(res);
+
+
+      });
       this.router.navigate(['/admin/stores']);
     }
     else {

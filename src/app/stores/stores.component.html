@@ -1,47 +1,37 @@
-<a routerLink="add"><button mat-raised-button color="primary">Addstores</button></a>
-<div class="cointainer">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <mat-grid-list cols="2">
-                <mat-grid-tile *ngFor="let store of (stores | async).data; let id = index">
-                    <mat-card class="example-card">
-                        <mat-card-header>
+<div style="height: 50px;background-color: #f0f0f0; padding: 10px; padding-right: 50px;"><a routerLink="add"
+        style="float: right; "><button mat-raised-button color="primary"
+            style="height: 50px; width: 150px">Addstores</button></a><br>
+</div>
+<div style="background-color: #f0f0f0; height: 100%;">
+    <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor="let store of (stores | async).data; let id = index">
+            <mat-card class="example-card card">
+                <mat-card-header>
 
-                            <mat-card-title>{{store.name}}</mat-card-title>
-                        </mat-card-header>
+                    <mat-card-title>{{store.name}}</mat-card-title>
+                </mat-card-header>
 
-                        <mat-card-content>
-                            <p>
-                                <label for="address">Address</label>:{{store.address}}
+                <mat-card-content>
+                    <p>
+                        <label for="address">Address </label>: {{store.addr}}
 
-                            </p>
-                            <p>
-                                <label for="address">products</label>:{{productcount(id)}}
+                    </p>
+                    <p>
+                        <!-- <label for="address">products</label>:{{productcount(id)}} -->
 
-                            </p>
-                            <p><label for="category">category</label>:{{store.category}}</p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button (click)="editStore(id)">Edit </button>
-                            <button mat-button (click)="removeStore(id)">Delete</button>
-                            <button mat-button (click)="products(id)">Go to products</button>
+                    </p>
+                    <p><label for="category">Category</label>: {{store.cat}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                        (click)="editStore(id)">Edit </button>
+                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                        (click)="removeStore(id)">Delete</button>
+                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                        (click)="products(id)">Go to products</button>
 
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
-
-        <!-- <h4>List of Customers</h4>
-            <ul class="customers " style="padding :15px;">
-                <li *ngFor="let store of stores | async; let i=index">
-                    <span>{{i+1}}.</span> <span>{{store.name}} </span> <span>{{store.address}}</span><span>
-                        {{store.category}}</span>
-                    <button (click)="removeStore(i)">Remove</button>
-                </li>
-            </ul> -->
-
-
-    </div>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>

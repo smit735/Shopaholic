@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   login: Login;
   constructor(private authguardservice: AuthguardserviceService, private router: Router, private fb: FormBuilder) { }
-
+  mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   ngOnInit() {
 
     if (this.authguardservice.gettoken()) {
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
     }
     this.myForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9.@]*')]],
+      email: ['', [Validators.required, Validators.pattern(this.mailformat)]],
 
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(12), Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$"
       )]],

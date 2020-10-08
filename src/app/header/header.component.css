@@ -1,3 +1,25 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .header{
+    background-color: rgb(35, 201, 201);
+    height: 100px;
+    color: white;
+    font-family: "Lucida Console", Courier, monospace;
+    letter-spacing: 2px;  
+   
+  }
+  .monospace {
+    font-family: "Lucida Console", Courier, monospace;
+    letter-spacing: 2px;
+  }

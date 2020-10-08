@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 export interface products {
     id: number;
     name: string;
-    image: string;
-    category: string;
+    img: string;
+    cat: string;
     price: number;
+
 }
 
 export interface Istore {
@@ -36,6 +37,21 @@ export function StoresReducer(state: Istore = initialState, action: storeaction)
             return {
                 ...state,
                 data: [...state.data, action.payload],
+
+            }
+        case StoresActionTypes.Loadstores:
+            console.log(state.data);
+            return {
+                ...state,
+                data: [...action.payload],
+
+            }
+        case StoresActionTypes.Loadproducts:
+            console.log(state.data);
+            return {
+                ...state,
+
+                products: [...action.payload],
 
             }
         case StoresActionTypes.Remove:

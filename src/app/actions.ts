@@ -1,12 +1,18 @@
 
 import { Action } from '@ngrx/store';
+import { Products } from './products';
+import { Stores } from './stores';
 export enum StoresActionTypes {
     Add = '[Stores Component] Add',
     Remove = '[Stores Component] Remove',
     edit = '[Stores Component] edit',
     ProductAdd = '[Product Component] Add',
     ProductRemove = '[Product Component] Remove',
-    ProductEdit = '[Product Component] edit'
+    ProductEdit = '[Product Component] edit',
+    getstores = "[stores Component] get Successfull",
+    Loadstores = "[stores Component] load Successfull",
+    getproducts = "[Product Component] get Successfull",
+    Loadproducts = "[Product Component] load Successfull"
 }
 
 export class ActionEx implements Action {
@@ -17,6 +23,23 @@ export class StoresAdd implements ActionEx {
     readonly type = StoresActionTypes.Add;
     constructor(public payload: any) {
     }
+}
+
+export class getstores implements Action {
+    readonly type = StoresActionTypes.getstores;
+}
+export class Loadstores implements Action {
+    readonly type = StoresActionTypes.Loadstores;
+
+    constructor(public payload: Stores[]) { }
+}
+export class getproducts implements Action {
+    readonly type = StoresActionTypes.getproducts;
+}
+export class Loadproducts implements Action {
+    readonly type = StoresActionTypes.Loadproducts;
+
+    constructor(public payload: Products[]) { }
 }
 export class StoresEdit implements ActionEx {
     readonly type = StoresActionTypes.edit;
@@ -61,4 +84,4 @@ export class ProductRemove implements ActionEx {
 
     }
 }
-export type storeaction = StoresAdd | StoresRemove | StoresEdit | ProductAdd | ProductRemove | ProductEdit;
+export type storeaction = StoresAdd | StoresRemove | StoresEdit | ProductAdd | ProductRemove | ProductEdit | getstores | Loadstores | getproducts | Loadproducts;

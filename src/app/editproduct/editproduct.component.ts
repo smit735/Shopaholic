@@ -7,6 +7,7 @@ import { MapsAPILoader } from '@agm/core';
 import { Stores } from "../stores";
 import { select, Store } from '@ngrx/store';
 import { ProductEdit } from "../productaction";
+import { StoresserviceService } from "../storesservice.service";
 
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
@@ -30,15 +31,16 @@ export class EditproductComponent implements OnInit {
     { value: 'Fashion', viewValue: 'Fashion' }
   ];
   stores: Observable<Istore>;
+  objectid: any;
+  realid: any;
   constructor(private router: Router, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone, private store: Store<{ stores: Istore }>, private route: ActivatedRoute) {
+    private ngZone: NgZone, private store: Store<{ stores: Istore }>, private route: ActivatedRoute, private StoresServiceService: StoresserviceService) {
     this.stores = store.pipe(select('stores'));
 
   }
   editproduct = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    image: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
+    img: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
 
   });
@@ -46,6 +48,21 @@ export class EditproductComponent implements OnInit {
 
   onSubmit() {
     if (this.editproduct.valid) {
+      this.store.subscribe((store: any) => {
+        console.log(store.stores.data[this.urlid]);
+        this.storeobject = store.stores.products[this.urlid];
+        this.objectid = store.stores.products[this.urlid]._id;
+        console.log(this.objectid);
+
+
+      })
+      this.realid = this.objectid;
+      this.StoresServiceService.editproducts(this.editproduct.value, this.realid).subscribe(res => {
+        console.log(res);
+
+
+
+      });
       this.store.dispatch(new ProductEdit(this.urlid, this.editproduct.value,));
       console.log(this.store);
 
@@ -67,8 +84,7 @@ export class EditproductComponent implements OnInit {
     })
     this.editproduct.setValue({
       name: this.storeobject.name,
-      image: this.storeobject.image,
-      category: this.storeobject.category,
+      img: this.storeobject.img,
       price: this.storeobject.price
     });
 

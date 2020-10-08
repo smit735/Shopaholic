@@ -24,6 +24,7 @@ import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { StoresReducer } from "./reducer";
 import { MatGridListModule } from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -32,6 +33,8 @@ import { EditComponent } from './edit/edit.component';
 import { ProductsComponent } from './products/products.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { EditproductComponent } from './editproduct/editproduct.component';
+import { EffectsModule } from '@ngrx/effects';
+import { ShopEffects } from './effects';
 
 
 @NgModule({
@@ -53,6 +56,7 @@ import { EditproductComponent } from './editproduct/editproduct.component';
     ReactiveFormsModule,
     MatCardModule,
     MatSelectModule,
+    HttpClientModule,
     MatButtonModule,
     MatInputModule,
     MatIconModule,
@@ -65,6 +69,7 @@ import { EditproductComponent } from './editproduct/editproduct.component';
       libraries: ['places']
     }),
     StoreModule.forRoot({ stores: StoresReducer }),
+    EffectsModule.forRoot([ShopEffects]),
   ],
   providers: [AuthguardserviceService],
   bootstrap: [AppComponent]

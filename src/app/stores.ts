@@ -1,11 +1,11 @@
 export class Stores {
     id: number;
     name: string;
-    address: string;
-    category: string;
+    addr: string;
+    cat: string;
     constructor(id: number, name: string,
-        address: string,
-        category: String,) { }
+        addr: string,
+        cat: String,) { }
 
 
 }

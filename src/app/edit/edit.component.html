@@ -23,17 +23,17 @@
                 <br>
                 <mat-form-field style="width:90%;">
                     <mat-label>Address</mat-label>
-                    <input matInput formControlName="address" placeholder="Your address">
+                    <input matInput formControlName="addr" placeholder="Your address">
 
                 </mat-form-field>
 
-                <div *ngIf="editstore.get('address').hasError('required') && editstore.dirty" class="red">
+                <div *ngIf="editstore.get('addr').hasError('required') && editstore.dirty" class="red">
                     Please provide a address!
                 </div><br>
 
                 <mat-form-field appearance="fill" style="width:90%;">
                     <mat-label>Category</mat-label>
-                    <mat-select formControlName="category">
+                    <mat-select formControlName="cat">
                         <mat-option *ngFor="let cate of category" [value]="cate.value">
                             {{cate.viewValue}}
                         </mat-option>

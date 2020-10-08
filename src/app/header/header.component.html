@@ -1,21 +1,24 @@
-<p>
-    <mat-toolbar>
+<mat-toolbar class="header">
 
 
-        <span>My App</span>
-        <span class="example-spacer"></span>
-        <a href="#" style="text-decoration: none; padding-right: 10px;"><span>Stores </span></a>
+    <span> <b class="monospace"> Shopaholic </b></span>
+    <span class="example-spacer"></span>
+    <mat-form-field class="example-full-width" style="margin-left: 150px; margin-right: 150px;">
+        <mat-label>Search Products</mat-label>
+        <input type="tel" matInput>
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Stores </span></a>
 
-        <a href="#" style="text-decoration: none; padding-right: 10px;"><span>Account</span></a>
-        <a href="#" style="text-decoration: none; padding-right: 10px;"><span>Contact us</span></a>
+    <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Account</span></a>
+    <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Contact us</span></a>
 
 
 
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-            <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-            <mat-icon>shopping_cart</mat-icon>
-        </button>
-    </mat-toolbar>
-</p>
+
+    <button mat-icon-button class="example-icon" style="color: white;  "
+        aria-label="Example icon-button with share icon">
+        <mat-icon rounded>shopping_cart</mat-icon>
+    </button>
+
+</mat-toolbar>
