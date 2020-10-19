@@ -1,5 +1,4 @@
 
-import { state } from '@angular/animations';
 import { Stores } from "./stores";
 import { Products } from "./products";
 import { ActionEx, StoresActionTypes, storeaction } from './actions';
@@ -9,21 +8,42 @@ export interface products {
     id: number;
     name: string;
     img: string;
-    cat: string;
+
     price: number;
 
 }
+export interface dashboard {
+    id: string;
+    products: Number;
+    stores: Number;
+    users: Number;
 
+
+}
+export interface cart {
+    id: number;
+    name: string;
+    quantity: number;
+
+    price: number;
+
+}
 export interface Istore {
     data: Array<Stores>;
     products: Array<products>;
+    cart: Array<cart>;
+    dashboard: Array<dashboard>;
+
 
 }
 
 export const initialState: Istore = {
     data: [],
 
-    products: []
+    products: [],
+    cart: [],
+    dashboard: []
+
 
 }
 
@@ -33,27 +53,95 @@ export function StoresReducer(state: Istore = initialState, action: storeaction)
 
     switch (action.type) {
         case StoresActionTypes.Add:
-            console.log(state.data);
             return {
                 ...state,
                 data: [...state.data, action.payload],
 
             }
         case StoresActionTypes.Loadstores:
-            console.log(state.data);
+
+            return {
+                ...state,
+                data: [...state.data, ...action.payload],
+
+            }
+        case StoresActionTypes.loadfilterstores:
+
             return {
                 ...state,
                 data: [...action.payload],
 
             }
+        case StoresActionTypes.loaduserstores:
+
+            return {
+                ...state,
+                data: [...action.payload],
+
+            }
+        case StoresActionTypes.emptystores:
+
+            return {
+                ...state,
+                data: [],
+
+            }
+        case StoresActionTypes.Loaddashboard:
+
+            return {
+                ...state,
+                dashboard: [...action.payload],
+
+            }
+
+        case StoresActionTypes.Loadcart:
+            console.log(state.cart);
+            return {
+                ...state,
+                cart: [...action.payload],
+
+            }
+        case StoresActionTypes.getproducts:
+            // console.log(state.data);
+
+
+            return {
+                ...state,
+
+                products: [],
+
+            }
         case StoresActionTypes.Loadproducts:
-            console.log(state.data);
+            // console.log(state.data);
+
             return {
                 ...state,
 
                 products: [...action.payload],
 
             }
+        case StoresActionTypes.loadsearchproducts:
+            // console.log(state.data);
+
+            return {
+                ...state,
+
+                products: [...action.payload],
+
+            }
+        case StoresActionTypes.cartproductremove:
+            console.log(action.payload);
+
+            return { ...state, data: [...state.data], products: [...state.products], cart: [...state.cart.slice(0, action.payload), ...state.cart.slice(action.payload + 1)] };
+
+        case StoresActionTypes.updatequantity:
+
+            return { ...state, cart: [...state.cart.slice(0, action.payload.pid), action.payload, ...state.cart.slice(action.payload.pid + 1,)] }
+
+        case StoresActionTypes.deleteproduct:
+
+
+            return { ...state, cart: [...state.cart.slice(0, action.payload), ...state.cart.slice(action.payload + 1)] };
         case StoresActionTypes.Remove:
 
 

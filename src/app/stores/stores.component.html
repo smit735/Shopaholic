@@ -1,37 +1,62 @@
-<div style="height: 50px;background-color: #f0f0f0; padding: 10px; padding-right: 50px;"><a routerLink="add"
-        style="float: right; "><button mat-raised-button color="primary"
-            style="height: 50px; width: 150px">Addstores</button></a><br>
-</div>
-<div style="background-color: #f0f0f0; height: 100%;">
-    <mat-grid-list cols="4">
-        <mat-grid-tile *ngFor="let store of (stores | async).data; let id = index">
-            <mat-card class="example-card card">
-                <mat-card-header>
+<cdk-virtual-scroll-viewport itemSize="100">
+    <span align="right">
+        <button mat-raised-button [matMenuTriggerFor]="menus" class="example-icon" style=" margin: 15px;">
+            Filter stores
+        </button>
+    </span>
+    <!--  -->
+    <mat-menu #menus="matMenu">
+        <button mat-menu-item (click)="removefilter()">Remove filter</button>
 
-                    <mat-card-title>{{store.name}}</mat-card-title>
-                </mat-card-header>
+        <span *ngFor="let cat of category;let id =index">
+            <button mat-menu-item (click)="filter(cat.value)">{{cat.value}}</button>
+        </span>
 
-                <mat-card-content>
-                    <p>
-                        <label for="address">Address </label>: {{store.addr}}
+    </mat-menu>
+    <div style="height: 50px;background-color: #f0f0f0; padding: 10px; padding-right: 50px;"><a routerLink="add"
+            style="float: right; "><button mat-raised-button color="primary"
+                style="height: 50px; width: 150px">Addstores</button></a><br>
+    </div>
+    <div style="background-color: #f0f0f0; height: 100%;">
 
-                    </p>
-                    <p>
-                        <!-- <label for="address">products</label>:{{productcount(id)}} -->
+        <mat-grid-list cols="4">
 
-                    </p>
-                    <p><label for="category">Category</label>: {{store.cat}}</p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
-                        (click)="editStore(id)">Edit </button>
-                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
-                        (click)="removeStore(id)">Delete</button>
-                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
-                        (click)="products(id)">Go to products</button>
+            <mat-grid-tile *cdkVirtualFor="let store of (stores | async).data; let id = index">
+                <mat-card class="example-card card" style="height: 250px; width: 350px;  padding: 0px;">
+                    <mat-card-header align=" center"
+                        style="background-color: rgb(35, 201, 201);padding: 10px;height: 50px;">
 
-                </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
+                        <mat-card-title
+                            style="font-size: 23px; text-align: center; color: white;padding-left: 20px;letter-spacing: 2px;">
+                            {{store.name}}
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-content style="padding-left: 10px; padding-top: 20px;">
+                        <p>
+                            <label for="address" style="font-size: 16px; font-weight: bold;">Address </label>:
+                            {{store.addr}}
+
+                        </p>
+                        <p>
+                            <!-- <label for="address">products</label>:{{productcount(id)}} -->
+
+                        </p>
+                        <p><label for="category" style="font-size: 16px; font-weight: bold;">Category</label>:
+                            {{store.cat}}</p>
+                    </mat-card-content>
+                    <hr>
+                    <mat-card-actions style="padding-left: 20px;">
+                        <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                            (click)="editStore(id)">Edit </button>
+                        <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                            (click)="removeStore(id)">Delete</button>
+                        <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                            (click)="products(id)">Go to products</button>
+
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</cdk-virtual-scroll-viewport>

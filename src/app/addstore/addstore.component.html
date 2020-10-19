@@ -10,15 +10,15 @@
                     <input matInput formControlName="name" placeholder="Your Name">
 
                 </mat-form-field>
-                <div *ngIf="addstore.get('name').hasError('required') && addstore.dirty " class="red">
+                <mat-error *ngIf="addstore.get('name').hasError('required') && addstore.dirty ">
                     Please provide a name!
-                </div>
-                <div *ngIf="addstore.get('name').hasError('minlength') && addstore.dirty " class="red">
+                </mat-error>
+                <mat-error *ngIf="addstore.get('name').hasError('minlength') && addstore.dirty ">
                     Minimum 6 letters required!
-                </div>
-                <div *ngIf="addstore.get('name').hasError('maxlength') && addstore.dirty " class="red">
+                </mat-error>
+                <mat-error *ngIf="addstore.get('name').hasError('maxlength') && addstore.dirty ">
                     Maximum 20 letters allowed!
-                </div>
+                </mat-error>
 
                 <br>
                 <mat-form-field style="width:90%;">
@@ -27,9 +27,9 @@
 
                 </mat-form-field>
 
-                <div *ngIf="addstore.get('addr').hasError('required') && addstore.dirty" class="red">
+                <mat-error *ngIf="addstore.get('addr').hasError('required') && addstore.dirty">
                     Please provide a addr!
-                </div><br>
+                </mat-error><br>
 
                 <mat-form-field appearance="fill" style="width:90%;">
                     <mat-label>Category</mat-label>
@@ -49,7 +49,8 @@
                     <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                         (dragEnd)="markerDragEnd($event)"></agm-marker>
                 </agm-map> -->
-                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+                    [disabled]="!addstore.valid">Submit</button>
 
             </mat-card-content>
         </mat-card>

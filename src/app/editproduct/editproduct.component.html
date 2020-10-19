@@ -10,9 +10,9 @@
                     <input matInput formControlName="name" placeholder="Product Name">
 
                 </mat-form-field>
-                <div *ngIf="editproduct.get('name').hasError('required') && editproduct.dirty " class="red">
+                <mat-error *ngIf="editproduct.get('name').hasError('required') && editproduct.dirty " class="red">
                     Please provide a name!
-                </div>
+                </mat-error>
 
                 <br>
                 <mat-form-field style="width:90%;">
@@ -21,9 +21,9 @@
 
                 </mat-form-field>
 
-                <div *ngIf="editproduct.get('img').hasError('required') && editproduct.dirty" class="red">
+                <mat-error *ngIf="editproduct.get('img').hasError('required') && editproduct.dirty" class="red">
                     Please provide a image!
-                </div><br>
+                </mat-error><br>
 
 
                 <mat-form-field style="width:90%;">
@@ -32,9 +32,9 @@
 
                 </mat-form-field>
 
-                <div *ngIf="editproduct.get('price').hasError('required') && editproduct.dirty" class="red">
+                <mat-error *ngIf="editproduct.get('price').hasError('required') && editproduct.dirty" class="red">
                     Please provide a Price!
-                </div><br>
+                </mat-error><br>
 
                 <!-- <mat-form-field class="example-full-width" style="width:90%;">
                     <mat-label>Address</mat-label>
@@ -46,7 +46,8 @@
                     <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                         (dragEnd)="markerDragEnd($event)"></agm-marker>
                 </agm-map> -->
-                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+                    [disabled]="!editproduct.valid">Submit</button>
 
             </mat-card-content>
         </mat-card>

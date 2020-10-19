@@ -1,0 +1,11 @@
+<div style="background-color: #f0f0f0; height: 100%;">
+    <div style="height: 50px;background-color: #f0f0f0; padding: 10px; padding-right: 50px;"><a routerLink="stores"
+            style="float: right; "><button mat-raised-button color="primary" style="height: 50px; width: 150px">Go to
+                store</button></a><br>
+    </div><br>
+    <div align="center">
+        <h1>Total number of stores : {{(stores |async).dashboard[0].stores}}</h1>
+        <h1>Total number of products : {{(stores |async).dashboard[0].products}}</h1>
+        <h1>Total number of users : {{(stores |async).dashboard[0].users}}</h1>
+    </div>
+</div>

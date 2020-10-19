@@ -1,24 +1,38 @@
 <mat-toolbar class="header">
 
 
-    <span> <b class="monospace"> Shopaholic </b></span>
+    <span> <a><b class="monospace" (click)="navigate()" style="cursor: pointer;"> Shopaholic </b></a></span>
     <span class="example-spacer"></span>
-    <mat-form-field class="example-full-width" style="margin-left: 150px; margin-right: 150px;">
-        <mat-label>Search Products</mat-label>
-        <input type="tel" matInput>
-        <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-    <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Stores </span></a>
 
-    <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Account</span></a>
-    <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Contact us</span></a>
+    <a style="text-decoration: none;color: white; padding-right: 10px; cursor: pointer;" (click)="stores()"><span>Stores
+        </span></a>
+
+    <!-- <a href="#" style="text-decoration: none;color: white; padding-right: 10px;"><span>Account</span></a> -->
 
 
 
 
     <button mat-icon-button class="example-icon" style="color: white;  "
         aria-label="Example icon-button with share icon">
-        <mat-icon rounded>shopping_cart</mat-icon>
+        <mat-icon rounded (click)="cart()">shopping_cart</mat-icon>
     </button>
+    <span>
+        <button mat-button [matMenuTriggerFor]="menu" class="example-icon" style="color: white;  " (click)="account()">
+            <mat-icon rounded>account_circle</mat-icon>
+        </button>
+    </span>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>{{user.name}}</button>
+        <button mat-menu-item>{{user.addr}}</button>
+        <button mat-menu-item>{{user.email}}</button>
+        <button mat-menu-item (click)="reset()">Reset Password</button>
+
+    </mat-menu>
+
+    <button mat-icon-button class="example-icon" style="color: white;  "
+        aria-label="Example icon-button with share icon" (click)="logout()">
+        <mat-icon rounded>login</mat-icon>
+    </button>
+
 
 </mat-toolbar>

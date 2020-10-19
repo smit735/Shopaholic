@@ -43,12 +43,11 @@ export class AddproductComponent implements OnInit {
   ngOnInit() {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.urlid = id;
-    console.log(this.urlid);
 
     this.store.subscribe((store: any) => {
-      console.log(store.stores.data[this.urlid]);
+
       this.storeid = store.stores.data[this.urlid]._id;
-      console.log(this.storeid);
+
 
 
     })
@@ -59,23 +58,24 @@ export class AddproductComponent implements OnInit {
   onSubmit() {
     if (this.addproduct.valid) {
       const payload = Object.assign(this.addproduct.value, { strid: this.storeid });
-      console.log(payload);
+
 
       this.store.subscribe((store: any) => {
-        console.log(store.stores.data[this.urlid]);
+
         this.storeid = store.stores.data[this.urlid].id;
-        console.log(this.storeid);
+
 
 
 
       })
-      this.store.dispatch(new ProductAdd(this.addproduct.value));
+
       this.StoresServiceService.addproduct(payload).subscribe(res => {
-        console.log(res);
+
 
 
       });
-      this.router.navigate(['admin/stores/' + this.urlid + '/products']);
+      this.store.dispatch(new ProductAdd(this.addproduct.value));
+      this.router.navigate(['admin/dashboard/stores/' + this.urlid + '/products']);
     }
     else {
       alert("Form is invalid")

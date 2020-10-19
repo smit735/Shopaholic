@@ -6,11 +6,11 @@ import { AuthguardserviceService } from "../authguardservice.service";
 import { MapsAPILoader } from '@agm/core';
 import { Stores } from "../stores";
 import { select, Store } from '@ngrx/store';
-import { StoresAdd } from "../actions";
+import { getstores, StoresAdd } from "../actions";
 import { StoresserviceService } from "../storesservice.service";
 import { Observable } from 'rxjs';
 
-interface category {
+export interface category {
   value: string;
   viewValue: string;
 }
@@ -54,17 +54,15 @@ export class AddstoreComponent implements OnInit {
   onSubmit() {
     if (this.addstore.valid) {
       Object.assign(this.addstore.value, { id: Math.floor(Math.random() * 100) });
-      console.log(this.addstore.value);
 
       this.store.dispatch(new StoresAdd(this.addstore.value));
-      console.log(this.store);
 
       this.StoresServiceService.addstores(this.addstore.value).subscribe(res => {
-        console.log(res);
-
 
       });
-      this.router.navigate(['/admin/stores']);
+      this.store.dispatch(new getstores());
+
+      this.router.navigate(['/admin/dashboard/stores']);
     }
     else {
       alert("Form is invalid")

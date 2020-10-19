@@ -3,6 +3,17 @@
             style="height: 50px; width: 150px; letter-spacing: 1px;">AddProducts</button></a></div>
 
 <div style="background-color: #f0f0f0; height: 100%;">
+    <form [formGroup]="search">
+        <mat-form-field class="example-full-width" style="margin-left: 150px; margin-right: 150px;">
+            <mat-label>Search Products</mat-label>
+            <input type="text" matInput formControlName="term">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+
+    <div *ngIf="(stores|async).products.length==0" style="text-align: center; margin-top: 150px;    ">
+        <h1>No products available</h1>
+    </div>
     <mat-grid-list cols="4">
         <mat-grid-tile *ngFor="let store of (stores | async).products; let id = index">
             <mat-card class="example-card card">

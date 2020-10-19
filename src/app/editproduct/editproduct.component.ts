@@ -12,6 +12,7 @@ import { StoresserviceService } from "../storesservice.service";
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
 import { Istore } from '../reducer';
+import { getstores } from '../actions';
 interface category {
   value: string;
   viewValue: string;
@@ -33,6 +34,7 @@ export class EditproductComponent implements OnInit {
   stores: Observable<Istore>;
   objectid: any;
   realid: any;
+  strid;
   constructor(private router: Router, private fb: FormBuilder, private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, private store: Store<{ stores: Istore }>, private route: ActivatedRoute, private StoresServiceService: StoresserviceService) {
     this.stores = store.pipe(select('stores'));
@@ -49,24 +51,20 @@ export class EditproductComponent implements OnInit {
   onSubmit() {
     if (this.editproduct.valid) {
       this.store.subscribe((store: any) => {
-        console.log(store.stores.data[this.urlid]);
         this.storeobject = store.stores.products[this.urlid];
         this.objectid = store.stores.products[this.urlid]._id;
-        console.log(this.objectid);
 
 
       })
       this.realid = this.objectid;
       this.StoresServiceService.editproducts(this.editproduct.value, this.realid).subscribe(res => {
-        console.log(res);
 
 
 
       });
       this.store.dispatch(new ProductEdit(this.urlid, this.editproduct.value,));
-      console.log(this.store);
 
-      this.router.navigate(['/admin/stores/' + this.urlid + '/products']);
+      this.router.navigate(['/admin/dashboard/stores/' + this.strid + '/products']);
     }
     else {
       alert("Form is invalid")
@@ -75,9 +73,9 @@ export class EditproductComponent implements OnInit {
   }
   ngOnInit(): void {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.strid = parseInt(this.route.snapshot.paramMap.get('urlid'));
     this.urlid = id;
     this.store.subscribe((store: any) => {
-      console.log(store.stores.products);
       this.storeobject = store.stores.products[this.urlid];
 
 

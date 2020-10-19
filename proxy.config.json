@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "apiforshopaholic.herokuapp.com",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

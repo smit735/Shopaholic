@@ -1,0 +1,75 @@
+<div align="center">
+    <form [formGroup]="user">
+        <mat-card style="width: 25%; margin: 10px;">
+            <mat-card-header style="text-align: center;">
+                <mat-card-title>Register Form</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <mat-label>name</mat-label>
+                    <input matInput formControlName="name" placeholder="Your name">
+
+                </mat-form-field>
+                <mat-error *ngIf="user.get('name').hasError('required') && user.dirty" class="red">
+                    Please provide a name!
+                </mat-error>
+                <mat-error *ngIf="user.get('name').hasError('pattern') && user.dirty" class="red">
+                    Wrong name Input
+                </mat-error>
+                <mat-form-field class="example-full-width">
+                    <mat-label>addr</mat-label>
+                    <input matInput formControlName="addr" placeholder="Your addr">
+
+                </mat-form-field>
+                <mat-error *ngIf="user.get('addr').hasError('required') && user.dirty" class="red">
+                    Please provide a addr!
+                </mat-error>
+                <mat-error *ngIf="user.get('addr').hasError('pattern') && user.dirty" class="red">
+                    Wrong addr Input
+                </mat-error>
+                <mat-form-field class="example-full-width">
+                    <mat-label>phone</mat-label>
+                    <input matInput formControlName="phone" placeholder="Your phone">
+
+                </mat-form-field>
+                <mat-error *ngIf="user.get('phone').hasError('required') && user.dirty" class="red">
+                    Please provide a phone!
+                </mat-error>
+                <mat-error *ngIf="user.get('phone').hasError('pattern') && user.dirty" class="red">
+                    Wrong phone Input
+                </mat-error>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Your email">
+
+                </mat-form-field>
+                <mat-error *ngIf="user.get('email').hasError('required') && user.dirty" class="red">
+                    Please provide a Email!
+                </mat-error>
+                <mat-error *ngIf="user.get('email').hasError('pattern') && user.dirty" class="red">
+                    Wrong Email Input
+                </mat-error>
+
+                <br>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="pass" placeholder="Your password">
+
+                </mat-form-field>
+
+                <mat-error *ngIf="user.get('pass').hasError('required') && user.dirty" class="red">
+                    Please provide a password!
+                </mat-error>
+                <mat-error *ngIf="user.get('pass').hasError('minlength') && user.dirty" class="red">
+                    Minimum length is 6 </mat-error>
+            </mat-card-content>
+            <mat-card-actions>
+
+                <button mat-button style="background-color:  rgb(35, 201, 201); color: white;" type="submit"
+                    (click)="register()" [disabled]="!user.valid">Register </button>
+
+
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>

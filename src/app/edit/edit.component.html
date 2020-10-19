@@ -10,15 +10,15 @@
                     <input matInput type="text" formControlName="name" placeholder="Your Name" name="name">
 
                 </mat-form-field>
-                <div *ngIf="editstore.get('name').hasError('required') && editstore.dirty " class="red">
+                <mat-error *ngIf="editstore.get('name').hasError('required') && editstore.dirty " class="red">
                     Please provide a name!
-                </div>
-                <div *ngIf="editstore.get('name').hasError('minlength') && editstore.dirty " class="red">
+                </mat-error>
+                <mat-error *ngIf="editstore.get('name').hasError('minlength') && editstore.dirty " class="red">
                     Minimum 6 letters required!
-                </div>
-                <div *ngIf="editstore.get('name').hasError('maxlength') && editstore.dirty " class="red">
+                </mat-error>
+                <mat-error *ngIf="editstore.get('name').hasError('maxlength') && editstore.dirty " class="red">
                     Maximum 20 letters allowed!
-                </div>
+                </mat-error>
 
                 <br>
                 <mat-form-field style="width:90%;">
@@ -27,9 +27,9 @@
 
                 </mat-form-field>
 
-                <div *ngIf="editstore.get('addr').hasError('required') && editstore.dirty" class="red">
+                <mat-error *ngIf="editstore.get('addr').hasError('required') && editstore.dirty" class="red">
                     Please provide a address!
-                </div><br>
+                </mat-error><br>
 
                 <mat-form-field appearance="fill" style="width:90%;">
                     <mat-label>Category</mat-label>
@@ -49,7 +49,8 @@
                     <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
                         (dragEnd)="markerDragEnd($event)"></agm-marker>
                 </agm-map> -->
-                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+                    [disabled]="!editstore.valid">Submit</button>
 
             </mat-card-content>
         </mat-card>

@@ -1,0 +1,48 @@
+<div style="background-color: #f0f0f0; height: auto;">
+
+    <span align="right">
+        <button mat-raised-button [matMenuTriggerFor]="menus" class="example-icon" style=" margin: 15px;">
+            Filter stores
+        </button>
+    </span>
+    <!--  -->
+    <mat-menu #menus="matMenu">
+        <button mat-menu-item (click)="removefilter()">Remove filter</button>
+
+        <span *ngFor="let cat of category;let id =index">
+            <button mat-menu-item (click)="filter(cat.value)">{{cat.value}}</button>
+        </span>
+
+    </mat-menu>
+    <mat-grid-list cols="4">
+        <mat-grid-tile *ngFor="let store of (stores | async).data; let id = index">
+            <mat-card class="example-card card" style="height: 250px; width: 300px;">
+                <mat-card-header>
+
+                    <mat-card-title>{{store.name}}</mat-card-title>
+                </mat-card-header>
+                <hr>
+                <mat-card-content>
+                    <p>
+                        <label for="address" style="font-size: 16px; font-weight: bold;">Address </label>:
+                        {{store.addr}}
+
+                    </p>
+                    <p>
+                        <!-- <label for="address">products</label>:{{productcount(id)}} -->
+
+                    </p>
+                    <p><label for="category" style="font-size: 16px; font-weight: bold;">Category</label>: {{store.cat}}
+                    </p>
+                </mat-card-content>
+                <hr>
+                <mat-card-actions align="center">
+
+                    <button mat-button style="background-color:  rgb(35, 201, 201); color: white;"
+                        (click)="products(id)">Go to products</button>
+
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

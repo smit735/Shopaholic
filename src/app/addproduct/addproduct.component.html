@@ -10,26 +10,26 @@
                     <input matInput formControlName="name" placeholder="Product Name">
 
                 </mat-form-field>
-                <div *ngIf="addproduct.get('name').hasError('required') && addproduct.dirty " class="red">
+                <mat-error *ngIf="addproduct.get('name').hasError('required') && addproduct.dirty ">
                     Please provide a name!
-                </div>
-                <div *ngIf="addproduct.get('name').hasError('minlength') && addproduct.dirty " class="red">
+                </mat-error>
+                <mat-error *ngIf="addproduct.get('name').hasError('minlength') && addproduct.dirty ">
                     Minimum 6 letters required!
-                </div>
-                <div *ngIf="addproduct.get('name').hasError('maxlength') && addproduct.dirty " class="red">
+                </mat-error>
+                <mat-error *ngIf="addproduct.get('name').hasError('maxlength') && addproduct.dirty ">
                     Maximum 20 letters allowed!
-                </div>
+                </mat-error>
 
                 <br>
                 <mat-form-field style="width:90%;">
-                    <mat-label>image</mat-label>
+                    <mat-label>Choose a file</mat-label>
                     <input matInput formControlName="img" placeholder="Product img link">
 
                 </mat-form-field>
 
-                <div *ngIf="addproduct.get('img').hasError('required') && addproduct.dirty" class="red">
+                <mat-error *ngIf="addproduct.get('img').hasError('required') && addproduct.dirty">
                     Please provide a image!
-                </div><br>
+                </mat-error><br>
 
 
                 <mat-form-field style="width:90%;">
@@ -38,12 +38,13 @@
 
                 </mat-form-field>
 
-                <div *ngIf="addproduct.get('price').hasError('required') && addproduct.dirty" class="red">
+                <mat-error *ngIf="addproduct.get('price').hasError('required') && addproduct.dirty">
                     Please provide a Price!
-                </div><br>
+                </mat-error><br>
 
 
-                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Submit</button>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()"
+                    [disabled]="!addproduct.valid">Submit</button>
 
             </mat-card-content>
         </mat-card>

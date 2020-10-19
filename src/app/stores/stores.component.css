@@ -1,7 +1,4 @@
-.example-card {
-    max-width: 400px;
 
-  }
   
   .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
@@ -19,3 +16,18 @@
   .container {
     padding: 2px 16px;
   }
+  cdk-virtual-scroll-viewport{
+    height: 100%;
+    width: 100%;
+     
+  }
+  .example {
+   
+    overflow-y: scroll; /* Add the ability to scroll */
+  }
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .example::-webkit-scrollbar {
+      display: none;
+  }
+  

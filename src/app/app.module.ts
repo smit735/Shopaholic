@@ -26,6 +26,7 @@ import { StoresReducer } from "./reducer";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ToastrModule } from 'ngx-toastr';
 
 
 import { AgmCoreModule } from '@agm/core';
@@ -35,7 +36,15 @@ import { AddproductComponent } from './addproduct/addproduct.component';
 import { EditproductComponent } from './editproduct/editproduct.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ShopEffects } from './effects';
-
+import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserstoresComponent } from './userstores/userstores.component';
+import { UserproductsComponent } from './userproducts/userproducts.component';
+import { CartComponent } from './cart/cart.component';
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +57,15 @@ import { ShopEffects } from './effects';
     EditComponent,
     ProductsComponent,
     AddproductComponent,
-    EditproductComponent
+    EditproductComponent,
+    RegisterComponent,
+    DashboardComponent,
+    UserstoresComponent,
+    UserproductsComponent,
+    CartComponent,
+    AdminLoginComponent,
+    ForgotpasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +76,9 @@ import { ShopEffects } from './effects';
     HttpClientModule,
     MatButtonModule,
     MatInputModule,
+    ScrollingModule,
     MatIconModule,
+    ToastrModule.forRoot(),
     MatGridListModule,
     MatMenuModule,
     MatToolbarModule,

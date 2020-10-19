@@ -1,0 +1,53 @@
+<!-- <div style="background-color: #f0f0f0; height: 100%;">
+    <mat-grid-list cols="1">
+        <mat-grid-tile *ngFor="let store of (stores | async).cart; let id = index">
+            <mat-card>
+                {{store.name}}
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div> -->
+<div fxLayout="row" fxLayoutGap="12px" style="background-color: #f0f0f0; height: 100%;">
+    <div style="height: 100px; text-align: center;padding-top: 15px; ">
+        <h1 style="font-weight: bold; letter-spacing: 1px;">Shopping Cart</h1>
+        <p style="font-size: 18px;">Enjoy Shopping with Shopaholic</p>
+    </div>
+
+
+    <mat-card *ngFor="let store of (stores | async).cart; let id = index">
+        <div class="row">
+            <div class="col-md-3"> Product name : {{store.name}} </div>
+            <div class="col-md-3"> Product price : {{store.price}} </div>
+            <div class="col-md-3">
+                <!-- <input type="number" name="quantity{{id}}" value={{store.quantity}}> -->
+                <!-- <input type="button" value="+" (click)="increment(id)" />
+                <input type="button" (click)="decrement(id)" value="-" /> -->
+                <div class="example-button-container">
+                    Product quantity : {{store.quantity}}
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon"
+                        style="margin: 4px; background-color:  rgb(35, 201, 201); box-shadow:none"
+                        (click)="increment(id)">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <span>
+                        <button mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon"
+                            style="margin: 4px; background-color:  rgb(35, 201, 201); box-shadow:none"
+                            (click)="decrement(id)" [disabled]="store.quantity ==1">
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3"> Total : {{(store.price * store.quantity)}} <button mat-icon-button
+                    class="example-icon" style="color: black; float:right ;  "
+                    aria-label="Example icon-button with share icon" (click)="delete(id)">
+                    <mat-icon rounded>delete</mat-icon>
+                </button> </div>
+
+        </div>
+    </mat-card>
+    <mat-card style="float: right; width: 100%; padding-right: 155px;">
+        <div class="mat-body-2" align="right">Total Amount</div>
+        <div class="mat-body-1" align="right"> {{total}}</div>
+    </mat-card>
+</div>

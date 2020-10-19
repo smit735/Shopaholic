@@ -48,25 +48,21 @@ export class EditComponent implements OnInit {
   onSubmit() {
     if (this.editstore.valid) {
       this.store.subscribe((store: any) => {
-        console.log(store.stores.data[this.urlid]);
         this.storeobject = store.stores.data[this.urlid];
         this.objectid = store.stores.data[this.urlid]._id;
-        console.log(this.objectid);
 
 
       })
       this.realid = this.objectid;
       this.StoresServiceService.editstores(this.editstore.value, this.realid).subscribe(res => {
-        console.log(res);
 
 
 
       });
       this.store.dispatch(new StoresEdit(this.urlid, this.editstore.value,));
-      console.log(this.realid);
 
 
-      this.router.navigate(['/admin/stores']);
+      this.router.navigate(['/admin/dashboard/stores']);
     }
     else {
       alert("Form is invalid")
@@ -78,10 +74,8 @@ export class EditComponent implements OnInit {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.urlid = id;
     this.store.subscribe((store: any) => {
-      console.log(store.stores.data[this.urlid]);
       this.storeobject = store.stores.data[this.urlid];
       this.objectid = store.stores.data[this.urlid]._id;
-      console.log(this.objectid);
 
 
     })
